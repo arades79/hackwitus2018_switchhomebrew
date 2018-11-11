@@ -18,11 +18,16 @@ int main(int argc, char* argv[])
 
     u64 out[3];
     // Other initialization goes here. As a demonstration, we print hello world.
-	u32 W0 = svcQueryPhysicalAddress(out, 0x1000);
-	printf("Ret: %u", W0);
-	printf("PhysAddr: %lu", out[0]);
-	printf("KernelAddr: %lu", out[1]);
-	printf("Size: %lu", out[2]);
+    if (envIsSyscallHinted(0x54))
+    {
+        u32 W0 = svcQueryPhysicalAddress(out, 0x1000);
+        printf("Ret: %u", W0);
+        printf("PhysAddr: %lu", out[0]);
+        printf("KernelAddr: %lu", out[1]);
+        printf("Size: %lu", out[2]);
+    }
+    else
+        printf("Insufficient priviledges for needed syscall\n");
 
     // Main loop
     while (appletMainLoop())
