@@ -21,40 +21,77 @@ s8 buttonHandler(void)
     if (kDown & KEY_PLUS)
         return -1;
     else if (kDown & KEY_DUP)
-        printf("d-up ");
+    { 
+        // printf("d-up ");
+        // move cursor up
+    }
+
 
     else if (kDown & KEY_DOWN)
-        printf("d-down ");
+    {
+       // printf("d-down ");
+       // move cursor down
+    }
 
     else if (kDown & KEY_LEFT)
-        printf("d-left ");
+    {        
+        // printf("d-left ");
+        // move cursor left
+    }
 
     else if (kDown & KEY_RIGHT)
-        printf("d-right ");
+    {
+        // printf("d-right ");
+        // move cursor right
+    }
 
     else if (kDown & KEY_A)
-        printf("A ");
+    {
+        // printf("A ");
+        // increment right digit of byte by one
+    }
 
     else if (kDown & KEY_B)
-        printf("B ");
+    {
+        // printf("B ");
+        // decrement right digit of byte by one
+    }
 
     else if (kDown & KEY_Y)
-        printf("Y ");
+    {
+        // printf("Y ");
+        // decrement left digit of byte by one
+    }
 
     else if (kDown & KEY_X)
-        printf("X ");
+    {
+        // printf("X ");
+        // decrement left digit of byte by one
+    }
 
     else if (kDown & KEY_R)
-        printf("R ");
+    {
+        // printf("R ");
+        // increment address by 0x800
+    }
 
     else if (kDown & KEY_L)
-        printf("L ");
+    {
+        // printf("L ");
+        // decrement address by 0x800
+    }
 
     else if (kDown & KEY_ZR)
-        printf("ZR ");
+    {
+        // printf("ZR ");
+        // increment address by 0x10000000
+    }
 
     else if (kDown & KEY_ZL)
-        printf("ZL ");
+    {
+        // printf("ZL ");
+        // decrement address by 0x10000000
+    }
     else 
         return 0;
 
