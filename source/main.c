@@ -16,12 +16,13 @@ int main(int argc, char* argv[])
     //   take a look at the graphics/opengl set of examples, which uses EGL instead.
     consoleInit(NULL);
 
+    u64 out[3];
     // Other initialization goes here. As a demonstration, we print hello world.
-	svcQueryPhysicalAddress(50);
-	printf("Ret: %d", W0);
-	printf("PhysAddr: %d", X1);
-	printf("KernelAddr: %d", X2);
-	printf("Size: %d", X3);
+	u32 W0 = svcQueryPhysicalAddress(out, 0x1000);
+	printf("Ret: %u", W0);
+	printf("PhysAddr: %lu", out[0]);
+	printf("KernelAddr: %lu", out[1]);
+	printf("Size: %lu", out[2]);
 
     // Main loop
     while (appletMainLoop())
