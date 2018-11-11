@@ -17,7 +17,11 @@ int main(int argc, char* argv[])
     consoleInit(NULL);
 
     // Other initialization goes here. As a demonstration, we print hello world.
-    printf("Eat my ass!\n");
+	svcQueryPhysicalAddress(50);
+	printf("Ret: %d", W0);
+	printf("PhysAddr: %d", X1);
+	printf("KernelAddr: %d", X2);
+	printf("Size: %d", X3);
 
     // Main loop
     while (appletMainLoop())
