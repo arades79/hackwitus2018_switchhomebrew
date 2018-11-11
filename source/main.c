@@ -15,6 +15,32 @@
 int main(int argc, char* argv[])
 {
     consoleInit(NULL);
+	
+	PrintConsole defaultConsole =
+	{
+		//Font:
+		{
+			default_font_bin, //font gfx
+			0, //first ascii character in the set
+			256, //number of characters in the font set
+			16, //tile width
+			16, //tile height
+		},
+		NULL, //renderer
+		1,1, //cursorX cursorY
+		0,0, //prevcursorX prevcursorY
+		80, //console width
+		45, //console height
+		0,  //window x
+		0,  //window y
+		80, //window width
+		45, //window height
+		3, //tab size
+		7, // foreground color
+		0, // background color
+		0, // flags
+		true //console initialized
+	};
 
     // u64 out[3];
     // // Other initialization goes here. As a demonstration, we print hello world.
