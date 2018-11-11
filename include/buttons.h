@@ -31,6 +31,7 @@ s8 buttonHandler(void)
     {
        // printf("d-down ");
        // move cursor down
+           printf("[[D^");
     }
 
     else if (kDown & KEY_LEFT)
@@ -95,5 +96,5 @@ s8 buttonHandler(void)
     else 
         return 0;
 
-    return 0;        
+    return 1;        
 }

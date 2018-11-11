@@ -12,35 +12,46 @@
 // project includes
 #include "../include/buttons.h"
 
+typedef struct Cursor
+{
+    u8 X;
+    u8 Y;
+} Cursor;
+
 int main(int argc, char* argv[])
 {
-    consoleInit(NULL);
 	
-	PrintConsole defaultConsole =
-	{
-		//Font:
-		{
-			default_font_bin, //font gfx
-			0, //first ascii character in the set
-			256, //number of characters in the font set
-			16, //tile width
-			16, //tile height
-		},
-		NULL, //renderer
-		1,1, //cursorX cursorY
-		0,0, //prevcursorX prevcursorY
-		80, //console width
-		45, //console height
-		0,  //window x
-		0,  //window y
-		80, //window width
-		45, //window height
-		3, //tab size
-		7, // foreground color
-		0, // background color
-		0, // flags
-		true //console initialized
-	};
+	// PrintConsole defaultConsole =
+	// {
+	// 	//Font:
+	// 	{
+	// 		NULL, //font gfx
+	// 		0, //first ascii character in the set
+	// 		256, //number of characters in the font set
+	// 		16, //tile width
+	// 		16, //tile height
+	// 	},
+	// 	NULL, //renderer
+	// 	10,10, //cursorX cursorY
+	// 	10,10, //prevcursorX prevcursorY
+	// 	80, //console width
+	// 	45, //console height
+	// 	0,  //window x
+	// 	0,  //window y
+	// 	80, //window width
+	// 	45, //window height
+	// 	3, //tab size
+	// 	7, // foreground color
+	// 	0, // background color
+	// 	0, // flags
+	// 	false //console initialized
+	// };
+
+    //PrintConsole * console = NULL;
+    consoleInit(NULL);
+    printf(CONSOLE_MAGENTA);
+
+    Cursor cursor = {0,0};
 
     // u64 out[3];
     // // Other initialization goes here. As a demonstration, we print hello world.
@@ -74,12 +85,37 @@ int main(int argc, char* argv[])
     // Main loop
     while (appletMainLoop())
     {
-        if (buttonHandler())
+        s8 buttonState = buttonHandler();
+
+        if (buttonState == -1)
             break;
+        else if (buttonState == 1) 
+        {
+            consoleClear();
+        
+            Handle han = envGetMainThreadHandle();
+            u64 addr = 0x0;
+            u8 buff[BUF_PAGE_SIZE];
+            svcMapProcessMemory(buff, han, addr, BUF_PAGE_SIZE);
+            printf("handle: %u, address: %lx\n", han, addr);
+            for (int i = 0; i < BUF_PAGE_SIZE; i++)
+            {
+                if (i == cursor.X || i - 1 == cursor.X)
+                    printf(CONSOLE_YELLOW);
+                else if (i - 2 == cursor.X)
+                    printf(CONSOLE_MAGENTA);
+                printf("%x", buff[i]);
+            }
+        }
+    
 
         // Your code goes here
 
         // Update the console, sending a new frame to the display
+        // console->cursorX = 1;
+        // console->cursorY = 1;
+        // console->windowX = 1;
+        // console->windowY = 1;
         consoleUpdate(NULL);
     }
 
