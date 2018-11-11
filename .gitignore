@@ -1,1 +1,8 @@
 libnx-workspace.code-workspace
+hackwitus2018_switchhomebrew.pfs0
+hackwitus2018_switchhomebrew.elf
+hackwitus2018_switchhomebrew.nacp
+hackwitus2018_switchhomebrew.nro
+hackwitus2018_switchhomebrew.nso
+.vscode/*
+build/*
