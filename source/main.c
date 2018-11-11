@@ -12,12 +12,6 @@
 // project includes
 #include "../include/buttons.h"
 
-typedef struct Cursor
-{
-    u8 X;
-    u8 Y;
-} Cursor;
-
 int main(int argc, char* argv[])
 {
 	

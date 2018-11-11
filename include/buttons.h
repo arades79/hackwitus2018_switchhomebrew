@@ -8,8 +8,14 @@
 
 // functions to handle kDown presses 
 
+typedef struct Cursor
+{
+    u8 X;
+    u8 Y;
+} Cursor;
 
-s8 buttonHandler(void)
+
+s8 buttonHandler(Cursor)
 {
     // Scan all the inputs. This should be done once for each frame
     hidScanInput();
@@ -24,6 +30,10 @@ s8 buttonHandler(void)
     { 
         // printf("d-up ");
         // move cursor up
+		if (cursor.Y>0)
+		{
+			cursor.Y-1;
+		}
     }
 
 
@@ -31,19 +41,31 @@ s8 buttonHandler(void)
     {
        // printf("d-down ");
        // move cursor down
-           printf("[[D^");
+        printf("[[D^");
+		if (cursor.Y<29 && cursor.X<20)
+		{
+			cursor.Y+1;
+		}
     }
 
     else if (kDown & KEY_LEFT)
     {        
         // printf("d-left ");
         // move cursor left
+		if (cursor.X>0)
+		{
+			cursor.X-1;
+		}
     }
 
     else if (kDown & KEY_RIGHT)
     {
         // printf("d-right ");
         // move cursor right
+		if (cursor.X<40)
+		{
+			cursor.X+1;
+		}
     }
 
     else if (kDown & KEY_A)
